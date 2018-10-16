@@ -10,9 +10,14 @@ import math
 file = "./20news-18828"
 file_frequency = "./data_statistic_every"
 file_tf_idf = "./data_tf_idf"
-frequency = 0
+frequency = 50
 
 def build_dic(path):
+	"""
+	:param path:
+	:return:
+	建立词典，存储到文件中
+	"""
 	dic_origin = data_helper.data_load(path)
 	dic_split = data_helper.data_split(dic_origin)
 	dic_re = data_helper.data_recover(dic_split, frequency)
@@ -23,6 +28,9 @@ def build_dic(path):
 # build_dic(file)
 
 def load_dic():
+	"""
+	:return:从文件加载词典
+	"""
 	with open("./data/dict_50.txt", "r", encoding="utf-8") as load_dic:
 		dic_word = dict()
 		load_dic_now = load_dic.readlines()
@@ -34,9 +42,6 @@ def load_dic():
 
 if __name__ == "__main__":
 
-	"""
-	数据分词，写入文件
-	"""
 	# data_origin = data_helper.data_load(file)
 	# for key in data_origin.keys():
 	# 	for i in data_origin[key]:
@@ -44,6 +49,9 @@ if __name__ == "__main__":
 	# 		with open("./data_split.txt", "a", encoding="utf-8") as output:
 	# 			output.write(str(data_sp.words) + "\n")
 
+	"""
+	读取词典和总词频
+	"""
 	dic = load_dic()
 	index = 0
 	# print(dic.keys())
@@ -55,6 +63,9 @@ if __name__ == "__main__":
 			j = i.split(":")
 			dic_frequency[j[0]] = int(j[1])
 
+	"""
+	tf和idf的分别计算，由于存储的问题，需要读取整个文件夹
+	"""
 	files = os.listdir(file_frequency)
 	for file in files:
 		file_list = os.listdir(file_frequency + "/" + file)
@@ -78,10 +89,3 @@ if __name__ == "__main__":
 			with open(file_tf_idf + "/" + file + "/" + file_text, "a", encoding="utf-8") as output:
 				for key in dic_tf_idf.keys():
 					output.write(key + ":" + str(dic_tf_idf[key])+ "\n")
-
-
-
-
-
-
-

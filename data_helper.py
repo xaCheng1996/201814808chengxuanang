@@ -1,3 +1,10 @@
+"""
+author:xaCheng
+data_load:加载数据（按照输入的路径）, 由于编码方式的问题，其实是专门用于加载原始数据文件的
+data_split:textblob自带的分词
+data_recover:返回一个词典，格式是词语:词频，根据输入过滤词表
+datas_statistics_all和data_statistics_every:统计所有文件和单个文件的词频，和recover的词典结合
+"""
 import os
 from textblob import TextBlob
 from textblob import Word
