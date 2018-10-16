@@ -70,3 +70,16 @@ data_statistic_every保存每个文件的词频，主要为了计算tf值
 
 data_tf_idf保存每个文件的tf_idf值
 
+
+
+对于data_statistics_every和data_tf_idf两个文件夹，由于文件过大，所以只上传了一部分示例数据，全体数据在这里：
+
+data_statistic_every:
+
+https://drive.google.com/drive/folders/11dIrmusfwRR_Gocx7hLKfA-X4XiK4EvL?usp=sharing
+
+data_tf_idf:
+
+https://drive.google.com/drive/folders/1ZV1XccJmWgEJpeXC19uvB2wfHK2J73YP?usp=sharing
+
+如果太慢的话请联系我= =人肉送U盘
