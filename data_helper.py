@@ -69,3 +69,82 @@ def data_recover(data, frequency):
 				s.add(w)
 		print(len(s))
 	return s
+
+
+def data_statistic_all():
+	"""
+	:param data: 空
+	:return: 不输出，统计文件的词频，文件存储
+	"""
+	file_frequency = "./data_statistic_every"
+	with open("./data/dict_50.txt", "r", encoding="utf-8") as dictionary:
+		dic = dict()
+		for i in dictionary.readlines():
+			j = i.replace("\n", "")
+			dic[j] = 0
+		index = 0
+		files = os.listdir(file_frequency)
+		for file in files:
+			file_list = os.listdir(file_frequency + "/" + file)
+			for file_text in file_list:
+				with open(file_frequency + "/" + file + "/" + file_text, "r", encoding="utf-8") as frequency_every:
+					frequency_every = frequency_every.readlines()
+					for i in frequency_every:
+						if len(i) < 2 :continue
+						j = i.split(":")
+						# print(j)
+						if int(j[1]) > 0:
+							dic[j[0]] += 1
+				index += 1
+				if index % 1000 == 0:
+					print(index)
+
+		with open("./data/word_frequency_all.txt", "a", encoding="utf-8") as output:
+			for key in dic.keys():
+				output.write(key + ":" + str(dic[key]) + "\n")
+
+# data_statistic_all()
+
+
+def data_statistic_every():
+	"""
+	:param data: 空
+	:return: 不输出，统计文件的词频，文件存储
+	"""
+	with open("./data/dict_50.txt", "r", encoding="utf-8") as dictionary:
+		dic = dict()
+		for i in dictionary.readlines():
+			j = i.replace("\n", "")
+			dic[j] = 0
+
+		path = "./20news-18828"
+		files = os.listdir(path)
+
+		os.mkdir("./data_statistic_every")
+		dic_file = dict()
+		index = 0
+		for file in files:
+			file_list = os.listdir(path + "/" +file)
+			os.mkdir("./data_statistic_every/" + file)
+			for file_txt in file_list:
+				dic_file[index] =  "./data_statistic_every/" + file + "/" + file_txt
+				index += 1
+
+		index = 0
+		with open("./data/data_split.txt", "r", encoding="utf-8") as data_split:
+			data_sp = data_split.readlines()
+			for i in data_sp:
+				for key in dic.keys():
+					dic[key] = 0
+				for j in i.split(", "):
+					j = j.replace("\"", "").replace("'", "").replace("]", "")
+					# print(dic.get(j))
+					if dic.get(j) is not None:
+						dic[j] += 1
+				with open(dic_file[index], "a",encoding="utf-8") as output:
+					index += 1
+					for key in dic.keys():
+						output.write(key + ":" + str(dic[key]) + "\n")
+					output.write("\n")
+
+# data_statistic_every()
