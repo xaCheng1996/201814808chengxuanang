@@ -83,3 +83,17 @@ data_tf_idf:
 https://drive.google.com/drive/folders/1ZV1XccJmWgEJpeXC19uvB2wfHK2J73YP?usp=sharing
 
 如果太慢的话请联系我= =人肉送U盘
+
+
+
+#### update 18-10-18
+
+KNN主体程序完成。
+
+训练集/测试集：0.9/0.1
+
+k默认为4。
+
+耗时极大，准确性尚未统计。
+
+预计采样部分数据进行统计。
