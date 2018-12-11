@@ -77,6 +77,7 @@ NML of Ward hierarchical clustering:0.7618074723654134
 
 NML of DBSCAN:0.10801213485085728
 
-NML of GaussianMixture:0.6291350897572198
+NML of GaussianMixture:0.709565553655379
+
 ```
 
