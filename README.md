@@ -50,9 +50,33 @@ Naive_Bayes.py
 
 ### 
 
+## 任务三：聚类
 
+基于sklearn、gensim进行的聚类测试。
 
+首先使用gensim自带的corpora模块将tweets.txt转化为字典信息，随后调用gensim的TfidfModel方法直接计算词语的tf-idf值。
 
+考虑为了精度使用word2vec，但是word2vec将每一个sample都转化为一个矩阵，sklearn提供的方法不支持矩阵输入作为sample的值，因此搁置。
 
+使用NML作为结果的衡量标准，NML的具体解释可以看这里：
 
+https://blog.csdn.net/gao1440156051/article/details/44343003
+
+对于计算出的tf-idf值，直接调用sklearn中的相关方法进行计算，结果如下：
+
+```
+NML of KMeans:0.7703183779505454
+
+NML of AffinityPropagation:0.6946841230646935
+
+NML of MeanShift:0.7265625
+
+NML of SpectralClustering:0.6445844502850135
+
+NML of Ward hierarchical clustering:0.7618074723654134
+
+NML of DBSCAN:0.10801213485085728
+
+NML of GaussianMixture:0.6291350897572198
+```
 

@@ -63,14 +63,41 @@ def random_embedding(vocab, embedding_dim):
 
 def json_read(file):
 	with open(file, 'r', encoding='utf-8') as read:
-		list = []
+		list, label = [], []
 		input = read.readlines()
 		for i in input:
 			data = json.loads(i)
 			list.append(str(data['text']).split())
+			label.append(int(data['cluster']))
 		# vocab_build('word2id.pkl', list, min_count=1)
 
-	return list
+	return list,label
+
+
+def look_up(list, embedding):
+	li = []
+	for i in list:
+		li.append(embedding[i])
+	return li
+
+def sentence2id(sent, word2id):
+	"""
+
+    :param sent:
+    :param word2id:
+    :return:
+    """
+	sentence_id = []
+	for word in sent:
+		if word.isdigit():
+			word = '<NUM>'
+		# elif ('\u0041' <= word <= '\u005a') or ('\u0061' <= word <= '\u007a'):
+		# 	word = '<ENG>'
+		if word not in word2id:
+			word = '<UNK>'
+		sentence_id.append(word2id[word])
+	return sentence_id
+
 # data = json_read('./Tweets.txt')
 # word2id = read_dictionary('./word2id.pkl')
 # for i in word2id:
